@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    table, td {
+      border:double;
+    }
+    thead {
+      background-color:azure;
+      font:bold;
+      font-size:15px;
+    }
+    #detailcontainer {
+       background-color:lightgray;
+    }
+    #dvtablecontainer {
+      height:200px;
+      overflow-y:scroll;
+    }
+</style>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
+<script src="~/Scripts/knockout-3.2.0.js"></script>
+
+
+
+
+<h1>Master-Details Customer-Orders</h1>
+
+<h2>The Customer Table</h2>
+<table>
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Email
+            </td>
+            <td>
+                Contact No
+            </td>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach:Customers">
+        <tr class="c1" data-bind="click:$root.openDetailsDialog">
+            <td> <span data-bind="text:CustomerId"></span></td>
+            <td> <span data-bind="text:CustomerName"></span></td>
+            <td> <span data-bind="text:Email"></span></td>
+            <td> <span data-bind="text:ContactNo"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="detailcontainer">
+    <h4>Orders Placed by : <span data-bind="text:CustomerName"></span></h4>
+    <div id="dvtablecontainer">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        OrderId
+                    </td>
+                    <td>
+                        OrderedItem
+                    </td>
+                    <td>
+                        OrderedQuantity
+                    </td>
+                    <td>
+                        OrdereDate
+                    </td>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:Orders">
+                <tr>
+                    <td> <span data-bind="text:OrderId"></span></td>
+                    <td> <span data-bind="text:OrderedItem"></span></td>
+                    <td> <span data-bind="text:OrderedQuantity"></span></td>
+                    <td> <span data-bind="text:OrderedDate"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="~/Scripts/MyScripts/MasterDetailsLogic.js"></script>
